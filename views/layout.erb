@@ -4,11 +4,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link href="/css/pimporreta.css" media="screen" rel="stylesheet" type="text/css" />
 	<title>pimporreta.org</title>
 </head>
 
 <body>
-<%= yield %>
+  <div class="wrap">
+    <div id="header">
+        <h1><a href="/" title="pimporreta.org">pimporreta.org</a></h1>
+    </div>
+    <div id="nav">
+      <a class="prev" href="/">anterior</a>
+      <a class="next" href="/">seg&uuml;ent</a>
+    </div>
+  </div>
 
+  <div id="content" class="wrap">
+    <div class="post">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

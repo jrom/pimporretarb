@@ -1,9 +1,5 @@
-require 'sinatra/base'
+require 'sinatra'
 
-class PimporretaRb < Sinatra::Base
-  set :sessions, true
-
-  get '/' do
-    erb :index
-  end
+get '/' do
+  erb :index
 end

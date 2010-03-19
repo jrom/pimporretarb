@@ -1,0 +1,83 @@
+html, body {
+height: 100%;
+}
+
+body
+{
+	margin: 0;
+	background: #0a0a0a;
+	color: #ffffff;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+#header a, #nav a
+{
+	text-decoration: none;
+  opacity: .70;
+	/* For IE 5-7 */
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+	/* For IE 8 */
+	-MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+}
+
+#header a:hover, #nav a:hover
+{
+	color: #ff0044;
+}
+
+.wrap
+{
+	width: 960px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#header
+{
+	position: fixed;
+	bottom: 0;
+	height: 140px;
+}
+
+	#header h1
+	{
+		margin: 0 0 2px 0;
+		font-size: 134px;
+	}
+
+	#header h1 a
+	{
+/*		color: #0A0A0A;*/
+		color: #1a1a1a;
+	}
+
+	
+#content
+{
+	margin-top: 5%;
+}
+
+	#content .post
+	{
+		text-align: center;
+/*		background-color: #111111;*/
+/*		height: 100%;*/
+		margin-bottom: 150px;
+	}
+
+
+#nav
+{
+	
+}
+
+#nav a
+{
+	font-size: 2em;
+	font-weight: bold;
+	color: #1a1a1a;
+}
+
+#nav a.next
+{
+	float: right;
+}
