@@ -47,21 +47,21 @@ body
 	#header h1 a
 	{
 /*		color: #0A0A0A;*/
-		color: #1a1a1a;
+/*		color: #1a1a1a;*/
+		color: #333333;
 	}
 
 	
 #content
 {
 	margin-top: 5%;
+	
+	margin-bottom: 150px;
 }
 
 	#content .post
 	{
 		text-align: center;
-/*		background-color: #111111;*/
-/*		height: 100%;*/
-		margin-bottom: 150px;
 	}
 
 
@@ -74,10 +74,26 @@ body
 {
 	font-size: 2em;
 	font-weight: bold;
-	color: #1a1a1a;
+	color: #333333;
 }
 
 #nav a.next
 {
 	float: right;
+}
+
+
+.comments { display: none;}
+
+.comment
+{
+	
+}
+.comment .author
+{
+	font-weight: bold;
+}
+.comment .ago
+{
+	color: #333333;
 }

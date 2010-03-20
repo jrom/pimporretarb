@@ -14,15 +14,32 @@
         <h1><a href="/" title="pimporreta.org">pimporreta.org</a></h1>
     </div>
     <div id="nav">
-      <a class="prev" href="/">anterior</a>
-      <a class="next" href="/">seg&uuml;ent</a>
+      <% if @post.prev %>
+        <a class="prev" href="<%= @post.prev.url %>">anterior</a>
+      <% end %>
+      <% if @post.next %>
+        <a class="next" href="<%= @post.next.url %>">seg&uuml;ent</a>
+      <% end %>
     </div>
   </div>
 
   <div id="content" class="wrap">
-    <div class="post">
-      <%= yield %>
-    </div>
+    <%= yield %>
   </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="UTF-8"></script>  
+  <script type="text/javascript"charset="UTF-8">  
+    $(function () {  
+      $('#gotocomments').click(function () {
+        $('#post').hide();
+        $('#comments').show();
+        return false;  
+      });
+      $('#gotopost').click(function () {
+        $('#comments').hide();
+        $('#post').show();
+        return false;  
+      });  
+    });  
+  </script>
 </body>
 </html>

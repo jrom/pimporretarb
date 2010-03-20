@@ -1,0 +1,25 @@
+<div id="post" class="post">
+  <h2><%= @post.title %></h2>
+  <p><%= @post.content %></p>
+
+  <p><a href="#" title="Comentaris" id="gotocomments"><%= @post.comments.size > 0 ? "#{@post.comments.size} " : "" %>Comentari<%= @post.comments.size != 1 ? "s" : "" %> &rarr;</a></p>
+</div>
+
+<div id="comments" class="comments">
+  <p><a href="#" title="Entrada" id="gotopost">&larr; Entrada</a></p>
+  <h2>Comentaris</h2>
+  <% @post.comments.each do |comment| %>
+    <div class="comment">
+      <span class="author"><%= comment.author %></span>
+      <span class="ago"></span>
+      <p><%= comment.content %></p>
+    </div>
+  <% end %>
+  <div class="comment-form">
+    <form action="/comment" method="post">
+      <label for="name">Nom</label><input type="text" name="name" value="" id="name">
+      <label for="comment">Comentari</label>
+      <textarea id="comment" name="comment" rows="8" cols="40"></textarea>
+    </form>
+  </div>
+</div>
