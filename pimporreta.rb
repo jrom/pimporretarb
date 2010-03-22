@@ -16,3 +16,12 @@ get %r{\/(\d+)\-[a-z0-9\-\_\+]+}i do |id|
   @post = Post.find(id)
   erb :index
 end
+
+post '/comment' do
+  p = Post.find(params[:post])
+  c = p.comments.build
+  c.author = params[:name]
+  c.content = params[:content]
+  c.save
+  redirect "#{p.url}\#comments"
+end

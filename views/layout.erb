@@ -27,18 +27,26 @@
     <%= yield %>
   </div>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="UTF-8"></script>  
+  <script src="/js/jquery.address.js" type="text/javascript"></script>
   <script type="text/javascript"charset="UTF-8">  
     $(function () {  
       $('#gotocomments').click(function () {
         $('#post').hide();
         $('#comments').show();
+        window.location.hash = "#comments";
         return false;  
       });
       $('#gotopost').click(function () {
         $('#comments').hide();
         $('#post').show();
+        window.location.hash = "";
         return false;  
-      });  
+      });
+      if (window.location.hash == "#comments")
+      {
+        $('#post').hide();
+        $('#comments').show();
+      }
     });  
   </script>
 </body>
