@@ -10,18 +10,21 @@
   <h2>Comentaris</h2>
   <% @post.comments.each do |comment| %>
     <div class="comment">
-      <span class="author"><%= comment.author %></span>
-      <span class="ago"></span>
-      <p><%= comment.content %></p>
+      <div class="author">
+      <%= md comment.author %>
+      <span class="ago">fa <%= time_ago_words(comment.created_at, Time.now) %>&nbsp;</span>
+    </div>
+      <div class="content"><%= md comment.content %>&nbsp;</div>
     </div>
   <% end %>
   <div class="comment-form">
     <form action="/comment" method="post">
       <input type="hidden" name="post" value="<%= @post.id %>" id="post">
-      <label for="name">Nom</label><input type="text" name="name" value="" id="name">
-      <label for="content">Comentari</label>
-      <textarea id="content" name="content" rows="8" cols="40"></textarea>
-      <input type="submit" name="sendcomment" value="Envia comentari" id="sendcomment">
+      <div class="name"><input type="text" name="name" value="" id="name"></div>
+      <div class="content">
+        <textarea id="comment" name="content" rows="5"></textarea><br>
+        <input type="submit" name="sendcomment" value="Envia comentari" id="sendcomment">
+      </div>
     </form>
   </div>
 </div>

@@ -1,3 +1,55 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
 html, body {
 height: 100%;
 }
@@ -8,8 +60,13 @@ body
 	background: #0a0a0a;
 	color: #ffffff;
 	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
 }
 
+a, a:visited
+{
+	color: #fff;
+}
 #header a, #nav a
 {
 	text-decoration: none;
@@ -56,6 +113,7 @@ body
 {
 	margin-top: 5%;
 	
+	line-height: 1.4em;
 	margin-bottom: 150px;
 }
 
@@ -84,16 +142,77 @@ body
 
 
 .comments { display: none;}
+.comments h2
+{
+	margin-left: 360px;
+	margin-bottom: 30px;
+}
 
 .comment
 {
-	
+	clear: both;
+	margin-bottom: 40px;
 }
 .comment .author
 {
 	font-weight: bold;
+	color: #ff0044;
+	float: left;
+	width: 340px;
+	text-align: right;
+	margin-right: 10px;
+	height: 60px;
 }
 .comment .ago
 {
 	color: #333333;
+	display: block;
+	font-weight: normal;
+}
+
+.comment .content
+{
+	display: block;
+	margin-left: 350px;
+	margin-right: 50px;
+	padding-left: 10px;
+	border-left: 1px solid #333;
+}
+
+.comment-form
+{
+	clear: both;
+}
+
+.comment-form .name
+{
+	width: 340px;
+	text-align: right;
+	float: left;
+}
+.comment-form .name input
+{
+	font-weight: bold;
+	color: #ff0044;
+	text-align: right;
+}
+
+.comment-form .content
+{
+	display: block;
+	margin-left: 350px;
+	
+	border-left: 1px solid #333;
+	padding-left: 10px;
+}
+
+.comment-form .content textarea
+{
+	width: 490px;
+	font-family: Helvetica, arial, sans-serif;
+	font-size: 0.8em;
+}
+
+.comment-form .content input
+{
 }
