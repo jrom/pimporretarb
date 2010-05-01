@@ -7,6 +7,36 @@ require 'lib/models'
 
 helpers do
 
+  def protected!
+    unauthorized and return unless authorized?
+    session[:login] = true
+  end
+  
+  def unauthorized
+    response['WWW-Authenticate'] = %(Basic realm="pimporreta") and \
+      throw(:halt, [401, "Not authorized\n"])
+  end
+  
+  def authorized?
+    @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+    @auth.provided? && @auth.basic? && @auth.credentials && authenticate(@auth.credentials[0], @auth.credentials[1])
+  end
+
+  def authenticate(user, pass)
+    u = User.find_by_login(user)
+    puts "LOGIN: " + u.inspect
+    if u && u.password == pass
+      session[:user_id] = u.id
+      return true
+    else
+      return false
+    end
+  end
+  
+  def logged_in?
+    session[:login] == true
+  end
+
   def md(s)
     options = {
     }
@@ -45,23 +75,90 @@ helpers do
   end
 end
 
+configure do
+  enable :sessions
+end
+
 get '/' do
-  @post = Post.last
+  @post = Post.find(:last, :conditions => ["published_on <= ?", Date.today])
   if @post
     redirect @post.url
+  else
+    "NOTHING TO SEE HERE MOTHERFUCKER"
   end
 end
 
-get %r{\/(\d+)\-[a-z0-9\-\_\+]+}i do |id|
-  @post = Post.find(id)
+get %r{\/(\d+)\-[a-z0-9\-\_\+]*}i do |id|
+  begin
+    @post = Post.find(id, :conditions => ["published_on <= ?", Date.today])
+  rescue ActiveRecord::RecordNotFound
+    redirect '/'
+  end
   erb :index
 end
 
 post '/comment' do
   p = Post.find(params[:post])
   c = p.comments.build
-  c.author = params[:name]
   c.content = params[:content]
+  if logged_in?
+    c.user_id = session[:user_id]
+  else
+    c.author = params[:name]
+  end
   c.save
-  redirect "#{p.url}\#comments"
+  if p.published_on > Date.today
+    redirect "/saved/#{p.id}"
+  else
+    redirect p.url
+  end
+end
+
+get '/new' do
+  @last_post = Post.find(:first, :order => "published_on desc")
+  protected!
+  @post = Post.new
+  erb :new
+end
+
+get '/login' do
+  protected!
+  redirect '/'
+end
+
+post '/new' do
+  protected!
+  @post = Post.new
+  @post.title = params[:title]
+  @post.content = params[:content]
+  @post.kind = params[:kind]
+  @post.user_id = session[:user_id]
+  if @post.save
+    redirect "/saved/#{@post.id}"
+  else
+    @last_post = Post.find(:first, :order => "published_on desc")
+    erb :new
+  end
+end
+
+get '/saved/:id' do
+  protected!
+  @post = Post.find(params[:id], :conditions => ["user_id = ?", session[:user_id]])
+  erb :saved
+end
+
+get '/logout' do
+  session[:login] = session[:user_id] = nil
+  redirect '/'
+end
+
+get '/delete/:id' do
+  protected!
+  @post = Post.find(params[:id], :conditions => ["user_id = ?", session[:user_id]])
+  if @post
+    @post.destroy
+    redirect '/'
+  else
+    redirect '/'
+  end
 end

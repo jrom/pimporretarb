@@ -1,0 +1,9 @@
+<div id="notice">
+  Pimporreta ha guardat correctament la teva proposta, però no es mostrarà fins el dia: <em><%= @post.published_on.strftime("%d/%m/%Y") %></em>
+  <br><br>
+  A continuació pots veure com quedarà, i afegir els primers comentaris.
+  <br><br>
+  Si l'has cagat pots esborrar aquesta entrada fent click <a href="/delete/<%= @post.id %>" onclick="return confirm('Segur?');">aquí</a>.
+</div>
+
+<%= erb :index, :layout => false %>

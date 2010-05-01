@@ -9,45 +9,31 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <div id="header">
-        <h1><a href="/" title="pimporreta.org">pimporreta.org</a></h1>
+  <div id="everysing">
+    <div class="wrap">
+      <div id="header">
+          <h1><a href="/" title="pimporreta.org">pimporreta.org</a></h1>
+      </div>
+      <div id="nav">
+        <% if @post && @post.prev %>
+          <a class="prev" href="<%= @post.prev.url %>">anterior</a>
+        <% end %>
+        <% if logged_in? %>
+          <a href="/new" class="button" title="Crear un post">+</a>
+          <a href="/logout" class="button" title="Desconnectar">x</a>
+        <% else %>
+          <a href="/login" class="button" title="Ets un membre?">?</a>
+        <% end %>
+        <% if @post && @post.next %>
+          <a class="next" href="<%= @post.next.url %>">seg&uuml;ent</a>
+        <% end %>
+      </div>
     </div>
-    <div id="nav">
-      <% if @post.prev %>
-        <a class="prev" href="<%= @post.prev.url %>">anterior</a>
-      <% end %>
-      <% if @post.next %>
-        <a class="next" href="<%= @post.next.url %>">seg&uuml;ent</a>
-      <% end %>
-    </div>
-  </div>
 
-  <div id="content" class="wrap">
-    <%= yield %>
+    <div id="content" class="wrap">
+      <%= yield %>
+    </div>
+    
   </div>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="UTF-8"></script>  
-  <script src="/js/jquery.address.js" type="text/javascript"></script>
-  <script type="text/javascript"charset="UTF-8">  
-    $(function () {  
-      $('#gotocomments').click(function () {
-        $('#post').hide();
-        $('#comments').show();
-        window.location.hash = "#comments";
-        return false;  
-      });
-      $('#gotopost').click(function () {
-        $('#comments').hide();
-        $('#post').show();
-        window.location.hash = "";
-        return false;  
-      });
-      if (window.location.hash == "#comments")
-      {
-        $('#post').hide();
-        $('#comments').show();
-      }
-    });  
-  </script>
 </body>
 </html>

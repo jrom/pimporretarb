@@ -1,28 +1,47 @@
-<div id="post" class="post">
-  <h2><%= @post.title %></h2>
-  <p><%= @post.content %></p>
-
-  <p><a href="#comments" title="Comentaris" id="gotocomments"><%= @post.comments.size > 0 ? "#{@post.comments.size} " : "" %>Comentari<%= @post.comments.size != 1 ? "s" : "" %> &rarr;</a></p>
+<div id="post" class="post kind_<%= @post.kind %>">
+  <div class="posttot">
+    <h1><%= @post.title %></h1>
+    <div class="postcontent"><%= @post.show_content %></div>
+  </div>
+  <div class="postinfo">
+    <span class="authorname"><%= @post.user.name %></span>
+    <span class="date"><%= @post.published_on.strftime("%d/%m/%Y") %></span>
+    <span class="postlink"><a href="<%= @post.url %>" rel="permalink">link</a></span>
+    </div>
 </div>
 
 <div id="comments" class="comments">
-  <p><a href="#" title="Entrada" id="gotopost">&larr; Entrada</a></p>
-  <h2>Comentaris</h2>
+  <h2><%= @post.comments.size > 0 ? "#{@post.comments.size} " : "" %>Comentari<%= @post.comments.size != 1 ? "s" : "" %></h2>
   <% @post.comments.each do |comment| %>
     <div class="comment">
       <div class="author">
-      <%= md comment.author %>
+      <%= md comment.author_name %>
+      <em><%= comment.user_id ? "membre" : "anònim" %></em>
       <span class="ago">fa <%= time_ago_words(comment.created_at, Time.now) %>&nbsp;</span>
     </div>
       <div class="content"><%= md comment.content %>&nbsp;</div>
     </div>
   <% end %>
+  <h3 id="drop-comment"><a href="#">Deixa un comentari</a></h3>
   <div class="comment-form">
     <form action="/comment" method="post">
       <input type="hidden" name="post" value="<%= @post.id %>" id="post">
-      <div class="name"><input type="text" name="name" value="" id="name"></div>
+      <div class="name">
+        <label for="name">Nom</label><br>
+        <% if logged_in? %>
+          <span class="author"><%= User.find(session[:user_id]).name %></span>
+        <% else %>
+          <input type="text" name="name" value="" id="name">
+        <% end %>
+      </div>
       <div class="content">
+        <label for="comment">Comentari</label><br>
         <textarea id="comment" name="content" rows="5"></textarea><br>
+        <% unless logged_in? %>
+        <label for="url">dos més quatre <em>(en números, per exemple: 6)</em></label><br><input type="text" name="url" value="" id="url">
+        <br><br>
+        <% end %>
+
         <input type="submit" name="sendcomment" value="Envia comentari" id="sendcomment">
       </div>
     </form>

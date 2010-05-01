@@ -99,6 +99,7 @@ a, a:visited
 	{
 		margin: 0 0 2px 0;
 		font-size: 134px;
+		line-height: 1em;
 	}
 
 	#header h1 a
@@ -108,13 +109,17 @@ a, a:visited
 		color: #333333;
 	}
 
-	
+#everysing
+{
+  display: block;
+  padding-bottom: 200px;
+}
+
 #content
 {
 	margin-top: 5%;
 	
 	line-height: 1.4em;
-	margin-bottom: 150px;
 }
 
 	#content .post
@@ -125,7 +130,7 @@ a, a:visited
 
 #nav
 {
-	
+	text-align: center;
 }
 
 #nav a
@@ -140,28 +145,51 @@ a, a:visited
 	float: right;
 }
 
-
-.comments { display: none;}
-.comments h2
+#nav a.prev
 {
-	margin-left: 360px;
-	margin-bottom: 30px;
+	float: left;
 }
 
+#nav a.button
+{
+  background-color: #333333;
+  color: #ff0044;
+  padding: 0 12px;
+  line-height: 35px;
+  margin: 0 5px;
+}
+
+.comments h2, #drop-comment
+{
+	margin-left: 320px;
+	margin-bottom: 30px;
+  font-size: 1.4em;
+}
+
+#drop-comment a
+{
+  color: #777;
+}
 .comment
 {
 	clear: both;
 	margin-bottom: 40px;
 }
-.comment .author
+.comment .author, span.author
 {
 	font-weight: bold;
 	color: #ff0044;
 	float: left;
-	width: 340px;
+	width: 300px;
 	text-align: right;
 	margin-right: 10px;
 	height: 60px;
+}
+
+.comment .author em
+{
+  font-weight: normal;
+  color: #555555;
 }
 .comment .ago
 {
@@ -173,7 +201,7 @@ a, a:visited
 .comment .content
 {
 	display: block;
-	margin-left: 350px;
+	margin-left: 310px;
 	margin-right: 50px;
 	padding-left: 10px;
 	border-left: 1px solid #333;
@@ -182,11 +210,12 @@ a, a:visited
 .comment-form
 {
 	clear: both;
+	display: none;
 }
 
 .comment-form .name
 {
-	width: 340px;
+	width: 300px;
 	text-align: right;
 	float: left;
 }
@@ -200,7 +229,7 @@ a, a:visited
 .comment-form .content
 {
 	display: block;
-	margin-left: 350px;
+	margin-left: 310px;
 	
 	border-left: 1px solid #333;
 	padding-left: 10px;
@@ -215,4 +244,115 @@ a, a:visited
 
 .comment-form .content input
 {
+}
+
+label em
+{
+  color: #555;
+}
+
+#newpost textarea
+{
+  width: 100%;
+}
+
+#newpost input#title
+{
+  width: 800px;
+  line-height: 1.2em;
+}
+
+#newpost select
+{
+  font-size: 2em;
+}
+
+#newpost input
+{
+  margin: 20px 0;
+  font-size: 2em;
+}
+
+h1
+{
+  font-size: 2em;
+  color: #ff0044;
+  line-height: 2.5em;
+}
+
+.notice
+{
+  display: block;
+  background: #333;
+  border: solid 1px #555;
+  padding: 20px;
+  margin: 20px 0 60px 0;
+  text-align: center;
+}
+.notice em
+{
+  color: #ff0044;
+  font-style: normal;
+  font-size: 2em;
+}
+.notice li
+{
+  margin-bottom: 20px;
+}
+
+.post
+{
+  margin-bottom: 100px;
+}
+
+.post.kind_q .posttot, .post.kind_l .posttot
+{
+  display: block;
+  background: #181818;
+  padding: 20px 40px 40px 40px;
+  margin: 20px 0;
+}
+.post.kind_q h1
+{
+  text-align: left;
+}
+
+.post.kind_l h1
+{
+  display: none;
+}
+.post.kind_l .postcontent p
+{
+  color: #777;
+  padding-top: 20px;
+}
+
+.post.kind_q .postcontent, .post.kind_l .postcontent a
+{
+  font-size: 3em;
+  line-height: 1em;
+  color: #999;
+}
+
+.post.kind_p .postcontent, .post.kind_v .postcontent, .post.kind_t .postcontent
+{
+  margin: 20px 0 60px 0;
+}
+
+
+.postinfo .authorname
+{
+  font-weight: bold;
+  color: #555;
+}
+.postinfo .date
+{
+  color: #777;
+  font-style: italic;
+  margin: 0 15px;
+}
+
+.postinfo .postlink a
+{
+  color: #555;
 }

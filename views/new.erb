@@ -1,0 +1,33 @@
+<div id="newpost">
+  <h1>Alimenta pimporreta</h1>
+  <% if @last_post %>
+  <div class="notice">
+      Última entrada publicada: <%= @last_post.published_on.strftime("%d/%m/%Y") %>
+  </div>
+  <% end %>
+  <form action="/new" method="post">
+    <input type="text" name="title" value="<%= @post.title %>" id="title">
+    <select name="kind" id="kind">
+      <option value="v">video</option>
+      <option value="q">cita</option>
+      <option value="p">foto</option>
+      <option value="l">link</option>
+      <option value="t">text</option>
+    </select>
+    <textarea id="postcontent" name="content" rows="10"><%= @post.content %></textarea><br>
+    <input type="submit" name="newpost" value="Desar" id="newpost">
+  </form>
+  <div class="notice" style="text-align: left;">
+    <h1>Ajuda</h1>
+    <ul>
+      <li><strong>video</strong>: Posa un títol o no a la primera casella, i a la segona enganxa-hi el codi d'<strong>insertar</strong> tret del Youtube.</li>
+      <li><strong>cita</strong>: Posa l'autor a la primera casella, si n'hi ha, i després posa la frase a la casella gran.</li>
+      <li><strong>foto</strong>: Posa un títol o no, i a la casella gran posa-hi l'adreça de la foto. Per ara no es poden pujar fotos, només es poden posar adreces de fotos penjades a internet. Si vols posar un comentari espera't a crear l'entrada i després afegeixes un comentari "normal".</li>
+      <li><strong>link</strong>: Funciona igual que les fotos: Títol o no, i després a la casella gran posa només el link.</li>
+      <li><strong>text</strong>: Posa el que vulguis.</li>
+    </ul>
+    <p><strong>Conclusió</strong>: Sempre hi ha d'haver alguna cosa al requadre gran. El petit és opcional.</p>
+    <br>
+    <p>Només es mostrarà una entrada per dia, per tant cada entrada que s'afegeixi anirà a la cua, i s'aniran mostrant per ordre d'inserció.</p>
+  </div>
+</div>
