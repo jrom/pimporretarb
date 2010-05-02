@@ -19,10 +19,10 @@
       <em><%= comment.user_id ? "membre" : "anònim" %></em>
       <span class="ago">fa <%= time_ago_words(comment.created_at, Time.now) %>&nbsp;</span>
     </div>
-      <div class="content"><%= md comment.content %>&nbsp;</div>
+      <div class="content"><%=auto_link_urls(h comment.content) %>&nbsp;</div>
     </div>
   <% end %>
-  <h3 id="drop-comment"><a href="#">Deixa un comentari</a></h3>
+  <h3 id="drop-comment">Deixa un comentari</h3>
   <div class="comment-form">
     <form action="/comment" method="post">
       <input type="hidden" name="post" value="<%= @post.id %>" id="post">
@@ -47,3 +47,14 @@
     </form>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+     $("#drop-comment").click(function() {
+       if ($(".comment-form").css("display") == "none")
+        $(".comment-form").fadeIn();
+      else
+        $(".comment-form").fadeOut();
+     });
+   });
+</script>

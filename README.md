@@ -1,4 +1,12 @@
-** Pimporreta's reborn **
+# Pimporreta's reborn
 
-rake db:migrate
-rake db:seed to hello world
+    rake db:migrate
+
+Optional:
+
+    rake db:seed
+
+## TODO
+
+- Ajaxify commenting
+- Timeline of comments

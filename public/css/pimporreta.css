@@ -166,9 +166,10 @@ a, a:visited
   font-size: 1.4em;
 }
 
-#drop-comment a
+#drop-comment
 {
   color: #777;
+  cursor: pointer;
 }
 .comment
 {
@@ -211,6 +212,10 @@ a, a:visited
 {
 	clear: both;
 	display: none;
+}
+.comment-form-show
+{
+  display: block;
 }
 
 .comment-form .name
@@ -339,6 +344,11 @@ h1
   margin: 20px 0 60px 0;
 }
 
+.post .postcontent img
+{
+  max-width: 100%;
+}
+
 
 .postinfo .authorname
 {
@@ -356,3 +366,27 @@ h1
 {
   color: #555;
 }
+
+ul.listposts
+{
+  
+}
+.listposts li
+{
+  margin-bottom: 10px;
+}
+  .listposts .date
+  {
+    font-style: italic;
+    color: #777;
+  }
+  .listposts a
+  {
+    font-weight: bold;
+  }
+  
+  .listposts h3
+  {
+    display: inline;
+    margin-left: 20px;
+  }

@@ -1,0 +1,6 @@
+<h1><%= @title %></h1>
+<ul class="listposts">
+  <% @posts.each do |post| %>
+    <li><span class="date"><%= post.published_on.strftime("%d/%m/%Y") %></span> <h3><a href="<%= post.url %>"><%= post.title_list %></a></h3></li>
+  <% end %>
+</ul>

@@ -12,6 +12,7 @@ end
 require 'sinatra'
 require 'active_record'
 require 'bluecloth'
+require 'digest/sha1'
 
 
 require 'lib/models'
