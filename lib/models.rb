@@ -44,12 +44,13 @@ class Post < ActiveRecord::Base
   end
   
   def title_list
-    case self.kind
+    s = case self.kind
     when 'q' then
       "#{self.content} &mdash; #{self.title}"
     else
       self.title
     end
+    s[0..100] + (s.length > 100 ? "..." : "")
   end
   
   private
@@ -72,6 +73,10 @@ class Comment < ActiveRecord::Base
     else
       self.author
     end
+  end
+
+  def author_name_full
+    "#{Rack::Utils.escape_html(self.author_name)} <em>#{self.user_id ? "membre" : "anònim"}</em>"
   end
 end
 

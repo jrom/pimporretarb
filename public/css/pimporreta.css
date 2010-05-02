@@ -379,20 +379,34 @@ ul.listposts
 {
   
 }
-.listposts li
+.listposts li, .listcomments li
 {
   margin-bottom: 10px;
 }
-  .listposts .date
+  .listposts .date, .listcomments .date
   {
     font-style: italic;
     color: #777;
   }
-  .listposts a
+  .listcomments .authorname
+  {
+    font-weight: bold;
+    color: #ff0044;
+  }
+  .listcomments .authorname em
+  {
+    font-weight: normal;
+    color: #777777;
+  }
+
+  .listposts a, .listcomments a
   {
     font-weight: bold;
   }
-  
+  .listcomments h3
+  {
+    display: inline;
+  }
   .listposts h3
   {
     display: inline;

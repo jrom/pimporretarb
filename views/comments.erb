@@ -1,0 +1,6 @@
+<h1>Comentaris recents</h1>
+<ul class="listcomments">
+  <% @comments.each do |comment| %>
+    <li><span class="date"><%= comment.created_at.strftime("%d/%m/%Y %H:%M") %></span> <span class="authorname"><%= comment.author_name_full %></span> a <h3><a href="<%= comment.post.url %>"><%= comment.post.title_list %></a></h3></li>
+  <% end %>
+</ul>

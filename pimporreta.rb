@@ -85,6 +85,11 @@ get '/list' do
   erb :list
 end
 
+get '/comments' do
+  @comments = Comment.find(:all, :include => :post, :conditions => ["posts.published_on <= ?", Date.today], :order => "comments.created_at DESC", :limit => 50)
+  erb :comments
+end
+
 get '/saved' do
   @posts = Post.find(:all, :conditions => ["user_id = ? AND published_on > ?", session[:user_id], Date.today])
   @title = "Les teves entrades pendents de publicar"
