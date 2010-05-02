@@ -80,7 +80,7 @@ get '/saved/:id' do
 end
 
 get '/list' do
-  @posts = Post.find(:all, :conditions => ["published_on <= ?", Date.today])
+  @posts = Post.find(:all, :conditions => ["published_on <= ?", Date.today], :order => "published_on desc")
   @title = "Arxiu d'entrades"
   erb :list
 end

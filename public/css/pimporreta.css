@@ -92,21 +92,29 @@ a, a:visited
 {
 	position: fixed;
 	bottom: 0;
-	height: 140px;
+	height: 60px;
+	width: 960px;
+	background-color: #222;
+	opacity: .70;
+	/* For IE 5-7 */
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+	/* For IE 8 */
+	-MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }
 
 	#header h1
 	{
 		margin: 0 0 2px 0;
-		font-size: 134px;
+		font-size: 4em;
 		line-height: 1em;
+  	text-align: center;
 	}
 
 	#header h1 a
 	{
 /*		color: #0A0A0A;*/
 /*		color: #1a1a1a;*/
-		color: #333333;
+		color: #000;
 	}
 
 #everysing
