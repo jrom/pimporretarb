@@ -1,9 +1,5 @@
-require 'sinatra'
-require 'active_record'
-require 'bluecloth'
 
 require 'config'
-require 'lib/models'
 
 helpers do
 
