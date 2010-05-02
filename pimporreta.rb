@@ -96,6 +96,12 @@ get '/saved' do
   erb :list
 end
 
+get '/feed' do
+  content_type :xml, :charset => "utf-8"
+  @posts = Post.find(:all, :conditions => ["published_on <= ?", Date.today], :order => "published_on desc")
+  builder :feed
+end
+
 get '/logout' do
   session[:login] = session[:user_id] = nil
   redirect '/'

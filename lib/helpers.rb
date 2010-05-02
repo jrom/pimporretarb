@@ -99,4 +99,14 @@ module Helpers
       end
     end
   end
+  def base_url
+    url = "http://#{request.host}"
+    request.port == 80 ? url : url + ":#{request.port}"
+  end
+
+  def absolute_urls(text)
+    text.gsub!(/(<a href=['"])\//, '\1' + base_url + '/')
+    text.gsub!(/(<img src=['"])\//, '\1' + base_url + '/')
+    text
+  end
 end
