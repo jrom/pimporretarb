@@ -11,7 +11,7 @@ configure do
 end
 
 get '/' do
-  @post = Post.find(:last, :conditions => ["published_on <= ?", Date.today])
+  @post = Post.find(:first, :conditions => ["published_on <= ?", Date.today], :order => "published_on DESC")
   if @post
     redirect @post.url
   else
