@@ -2,6 +2,7 @@
 class Post < ActiveRecord::Base
   has_many :comments
   belongs_to :user
+
   def to_param
     title.nil? ? "#{id}-" : "#{id}-#{title.gsub(/[^a-z0-9\-_\+]+/i, '-').downcase}"
   end
@@ -14,10 +15,10 @@ class Post < ActiveRecord::Base
   end
   
   def next
-    self.class.find(:first, :conditions =>  ['id > ? AND published_on <= ?', self.id, Date.today])
+    self.class.find(:first, :conditions =>  ['published_on > ? AND published_on <= ?', self.published_on, Date.today], :order => "published_on asc")
   end
   def prev
-    self.class.find(:last, :conditions =>  ['id < ? AND published_on <= ?', self.id, Date.today])
+    self.class.find(:last, :conditions =>  ['published_on < ? AND published_on <= ?', self.published_on, Date.today])
   end
   
   validates_presence_of :content
