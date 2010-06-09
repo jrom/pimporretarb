@@ -18,7 +18,7 @@
       <%=md comment.author_name_full %>
       <span class="ago">fa <%= time_ago_words(comment.created_at, Time.now) %>&nbsp;</span>
     </div>
-      <div class="content"><%=auto_link_urls(h comment.content) %>&nbsp;</div>
+      <div class="content"><%=auto_link_urls(gfm(comment.content)) %>&nbsp;</div>
     </div>
   <% end %>
   <h3 id="drop-comment">Deixa un comentari</h3>
